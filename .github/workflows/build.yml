@@ -1,0 +1,37 @@
+name: Build
+on: [pull_request, push]
+env:
+  PKGFORGE_STATEFILE: /tmp/pkgforge
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: akerl/action-checkout@v2.0.0
+    - name: Submodules
+      run: git submodule update --init --recursive
+    - name: Make
+      run: make
+    - name: Release
+      if: startsWith(github.ref, 'refs/tags/')
+      run: make release
+    - name: Notify on success
+      if: success()
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+      uses: akerl/github-action-slack-notify-build@v1.1.0
+      with:
+        channel_id: ${{ secrets.SLACK_BOT_CHANNEL }}
+        status: success
+        color: good
+    - name: Notify on failure
+      if: failure()
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+      uses: akerl/github-action-slack-notify-build@v1.1.0
+      with:
+        channel_id: ${{ secrets.SLACK_BOT_CHANNEL }}
+        status: failed
+        color: danger
+
