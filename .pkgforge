@@ -1,0 +1,34 @@
+name 'tarball_arch'
+org 'dock0'
+
+source(
+  type: 'git',
+  path: '.'
+)
+
+build do
+  new_root = tmpdir(:root)
+  run "pacstrap -c -G #{new_root} pacman gzip grep shadow procps-ng sed"
+  run "cp -R overlay/* #{new_root}/"
+  run "arch-chroot #{new_root} pacman-key --init"
+  run "arch-chroot #{new_root} pacman-key --populate"
+  run "arch-chroot #{new_root} locale-gen"
+  %w(etc/hosts etc/resolv.conf sys srv/ftp srv/http proc).each do |x|
+    run "rm -rf #{new_root}/#{x}"
+  end
+  run "tar --numeric-owner -C #{new_root} -cjf #{releasedir}/root.tar.bz2 ."
+end
+
+package(
+  type: 'file',
+  artifacts: [
+    {
+      source: 'root.tar.bz2',
+      name: 'root.tar.bz2'
+    }
+  ]
+)
+
+test do
+  # TODO: add tests
+end

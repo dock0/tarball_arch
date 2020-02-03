@@ -1,3 +1,2 @@
-FROM dock0/build
-MAINTAINER akerl <me@lesaker.org>
-RUN pacman -Syu --needed --noconfirm mkinitcpio arch-install-scripts go
+FROM dock0/pkgforge
+RUN pacman -Syu --needed --noconfirm mkinitcpio arch-install-scripts

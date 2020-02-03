@@ -1,15 +1,15 @@
 dock0/arch
 =======
 
-[![Automated Build](https://img.shields.io/docker/build/dock0/arch.svg)](https://hub.docker.com/r/dock0/arch/)
-[![Build Status](https://img.shields.io/travis/com/dock0/arch.svg)](https://travis-ci.com/dock0/arch)
-[![MIT Licensed](http://img.shields.io/badge/license-MIT-green.svg)](https://tldrlegal.com/license/mit-license)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/dock0/tarball_arch/Build)](https://github.com/dock0/tarball_arch/actions))
+[![GitHub release](https://img.shields.io/github/release/dock0/tarball_arch.svg)](https://github.com/dock0/tarball_arch/releases)
+[![License](https://img.shields.io/github/license/dock0/tarball_arch)](https://github.com/dock0/tarball_arch/blob/master/LICENSE)
 
-A minimal Arch container, used as the baseline for my other containers. It used to contain the [amylum](https://github.com/amylum/repo) repo, but I've moved that to [dock0/static_arch](https://github.com/dock0/static_arch). If you want an Archlinux container that has the whole [base](https://www.archlinux.org/groups/x86_64/base/) package group, check out [dock0/full_arch](https://github.com/dock0/full_arch).
+A minimal Archlinux root filesystem, as a tarball. This is used as a base image for my Arch containers.
 
 ## Usage
 
-To build a new arch image, run `make`. This launches the docker build container and builds a new image.
+To build a new image, update the submodule and run `make`. This launches the docker build container and builds the image.
 
 To start a shell in the build environment for manual actions, run `make manual`.
 
