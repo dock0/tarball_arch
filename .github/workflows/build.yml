@@ -1,7 +1,5 @@
 name: Build
 on: [pull_request, push]
-env:
-  PKGFORGE_STATEFILE: /tmp/pkgforge
 jobs:
   build:
     name: Build
@@ -12,8 +10,14 @@ jobs:
     - name: Submodules
       run: git submodule update --init --recursive
     - name: Make
+      env:
+        PKGFORGE_STATEFILE: /tmp/pkgforge
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       run: make
     - name: Release
+      env:
+        PKGFORGE_STATEFILE: /tmp/pkgforge
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       if: startsWith(github.ref, 'refs/tags/')
       run: make release
     - name: Notify on success
