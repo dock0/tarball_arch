@@ -13,7 +13,7 @@ build do
   run "arch-chroot #{new_root} pacman-key --init"
   run "arch-chroot #{new_root} pacman-key --populate"
   run "arch-chroot #{new_root} locale-gen"
-  %w(etc/hosts etc/resolv.conf sys srv/ftp srv/http proc).each do |x|
+  %w(etc/hosts etc/mtab etc/resolv.conf sys srv/ftp srv/http proc).each do |x|
     run "rm -rf #{new_root}/#{x}"
   end
   run "tar --numeric-owner -C #{new_root} -cjf #{releasedir}/root.tar.bz2 ."
