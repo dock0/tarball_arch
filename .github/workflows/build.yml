@@ -9,6 +9,8 @@ jobs:
       uses: akerl/action-checkout@v2.0.0
     - name: Submodules
       run: git submodule update --init --recursive
+    - name: Registry auth
+      run: docker login docker.pkg.github.com -u nobody -p ${{ github.token }}
     - name: Make
       env:
         PKGFORGE_STATEFILE: /tmp/pkgforge
