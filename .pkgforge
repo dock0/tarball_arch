@@ -8,7 +8,7 @@ source(
 
 build do
   new_root = tmpdir(:root)
-  run "pacstrap -c -G #{new_root} pacman gzip grep shadow procps-ng sed"
+  run "pacstrap -c -G #{new_root} pacman gzip grep shadow procps-ng sed awk"
   run "cp -R overlay/* #{new_root}/"
   run "arch-chroot #{new_root} pacman-key --init"
   run "arch-chroot #{new_root} pacman-key --populate"
