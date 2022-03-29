@@ -17,16 +17,16 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        password: ${{ github.token }}
     - name: Make
       env:
         PKGFORGE_STATEFILE: /tmp/pkgforge
-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        GITHUB_TOKEN: ${{ github.token }}
       run: make
     - name: Release
       env:
         PKGFORGE_STATEFILE: /tmp/pkgforge
-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        GITHUB_TOKEN: ${{ github.token }}
       if: startsWith(github.ref, 'refs/tags/')
       run: make release
     - name: Store
