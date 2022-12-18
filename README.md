@@ -1,7 +1,7 @@
 dock0/arch
 =======
 
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/dock0/tarball_arch/build.yaml?branch=main)](https://github.com/dock0/tarball_arch/actions))
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/dock0/tarball_arch/build.yml?branch=main)](https://github.com/dock0/tarball_arch/actions))
 [![GitHub release](https://img.shields.io/github/release/dock0/tarball_arch.svg)](https://github.com/dock0/tarball_arch/releases)
 [![License](https://img.shields.io/github/license/dock0/tarball_arch)](https://github.com/dock0/tarball_arch/blob/master/LICENSE)
 
