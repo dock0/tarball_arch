@@ -1,3 +1,3 @@
 FROM ghcr.io/dock0/pkgforge:latest
-RUN gem install --no-document --no-user-install pkgforge targit
+RUN gem install --no-document --no-user-install pkgforge targit erb
 RUN pacman -Sy --needed --noconfirm mkinitcpio arch-install-scripts
