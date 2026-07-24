@@ -1,13 +1,24 @@
 ---
 name: Build
 'on':
+  push:
+    tags:
+    - "**"
   pull_request:
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: read
     env:
       PKGFORGE_STATEFILE: "/tmp/pkgforge"
     steps:
     - name: Run base CI
       uses: akerl/.github/actions/base-pkgforge@main
+    - name: Release
+      if: startsWith(github.ref, 'refs/tags/')
+      run: make release
+      env:
+        GITHUB_TOKEN: "${{ github.token }}"
