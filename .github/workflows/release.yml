@@ -1,17 +1,15 @@
 ---
-name: Build
+name: Release
 'on':
   push:
     tags:
     - "**"
-  pull_request:
 jobs:
-  build:
-    name: Build
+  release:
+    name: Release
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      packages: read
     env:
       PKGFORGE_STATEFILE: "/tmp/pkgforge"
     steps:
